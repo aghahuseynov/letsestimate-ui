@@ -1,8 +1,11 @@
+import { getServerURI } from "@/utils/getServerURI";
 import { ReactNode, createContext, useContext } from "react";
 import io, { Socket, Manager } from "socket.io-client";
 
 
-const manager = new Manager('http://0.0.0.0:8080', {})
+const manager = new Manager(`${getServerURI()}/`, {
+    secure: true,
+})
 
 const socket: Socket = manager.socket('/', {})
 

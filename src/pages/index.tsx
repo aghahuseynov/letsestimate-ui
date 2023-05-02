@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import io, { Manager } from "socket.io-client";
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { generateRandomRoom } from '@/utils/generateRandomRoom';
 import { useRouter } from 'next/router';
 import { useSocket } from '@/context/socketContext';

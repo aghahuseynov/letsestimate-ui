@@ -4,15 +4,16 @@ import { Options } from "@/components/options/Options";
 import { PlayerList } from "@/components/playerList/PlayerList";
 import { useAppContext } from "@/context/appContext";
 import { useSocket } from "@/context/socketContext";
+import { getServerURI } from "@/utils/getServerURI";
 import { useRouter } from "next/router"
 import { SyntheticEvent, useEffect, useState } from "react"
 
 
 export async function getServerSideProps({ params }: any) {
-    const res1 = await fetch(`http://localhost:3001/room/${params.roomName}`)
-    const room = await res1.json();
+    const response = await fetch(`${getServerURI()}/room/${params.roomName}`)
+    const roomData = await response.json();
 
-    return { props: { room: room } }
+    return { props: { room: roomData } }
 }
 
 type RoomProps = {
@@ -47,7 +48,7 @@ const Room = ({ room }: RoomProps) => {
             setPlayerName(newPlayerName!);
 
             setRoomData({ ...roomData, attenders: [...roomData.attenders, { playerName: newPlayerName!, isAdmin: false }] })
- 
+
             localStorage.setItem(roomName, JSON.stringify({ roomName: roomName, playerName: newPlayerName, isAdmin: false }));
 
             socket.emit('joinRoom', { roomName: router.query.roomName, playerName: newPlayerName });
