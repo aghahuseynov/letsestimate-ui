@@ -53,11 +53,13 @@ export const EstimateResult = ({ roomEstimations }: EstimateResultProps) => {
     }
 
 
-    return <PieChart
-        style={{ fontFamily: "Roboto", fontSize: "10px" }} labelStyle={{ fill: '#fff' }}
-        label={({ dataEntry }) => dataEntry.title} startAngle={-90} animate={true}
-        labelPosition={50 + 20}
-        data={getEstimationsData()}
-    />
+    return <div style={{ width: 550, height: 550 }}>
+        <PieChart
+            style={{ fontFamily: "Roboto", fontSize: "10px" }} labelStyle={{ fill: '#fff' }}
+            label={({ dataEntry }) => dataEntry.title} startAngle={-90} animate={true}
+            labelPosition={50 + 20}
+            data={getEstimationsData()}
+        />
+    </div>
 
 }

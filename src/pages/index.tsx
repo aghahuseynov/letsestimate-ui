@@ -30,12 +30,17 @@ export default function Home() {
 
 
   return (
-    <main
-      className={`flex min-h-screen flex-col  p-24 ${inter.className}`}
-    >
-      <input placeholder='Please enter your name' onChange={onChange} />
-      <button onClick={createRoom} >Create Room</button>
+    <div className="md:container md:mx-auto hero">
+      <div className="hero-content text-center mt-10">
+        <div className="max-w-md">
+          <h1 className="text-3xl font-bold">Create a room without any limitations!</h1>
+          <p className="py-6">And you can start estimating with your team right away</p>
+          <input type="text" placeholder="Please enter your name" className="input w-full max-w-xs" onChange={onChange} />
 
-    </main>
+          <button onClick={createRoom} className="btn mt-5 ">Create a Room</button>
+
+        </div>
+      </div>
+    </div>
   )
 }

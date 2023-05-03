@@ -1,12 +1,14 @@
 import { Attender, RoomEstimation, RoomType } from "@/common/types";
 import { EstimateResult } from "@/components/estimateResult/EstimateResult";
 import { Options } from "@/components/options/Options";
-import { PlayerList } from "@/components/playerList/PlayerList";
+import { AttenderList } from "@/components/attenderList/AttenderList";
 import { useAppContext } from "@/context/appContext";
 import { useSocket } from "@/context/socketContext";
 import { getServerURI } from "@/utils/getServerURI";
 import { useRouter } from "next/router"
-import { SyntheticEvent, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import { CopyRoomLink } from "@/components/copyRoomLink/CopyRoomLink";
+import { StartEstimation } from "@/components/startEstimation/StartEstimation";
 
 
 export async function getServerSideProps({ params }: any) {
@@ -59,23 +61,31 @@ const Room = ({ room }: RoomProps) => {
             socket.emit('joinRoom', { roomName: router.query.roomName, playerName: playerName, isAdmin: roomInfo.isAdmin });
         }
 
-        socket.on('newAttenders', async (roomInfo) => {
+        socket.on('newAttenders', async (roomInfo: RoomType) => {
             setRoomData(roomInfo);
         })
 
 
         socket.on('showSize', (data) => {
-            console.log('size:', data);
             setAttendersEstimation(data);
+        })
+
+
+        socket.on('changeRoomStatus', (roomInfo: RoomType) => {
+            setRoomData(roomInfo);
         })
 
 
     }, [playerName, router.query.roomName])
 
 
-    const toggleEstimate = (e: SyntheticEvent) => {
+    const toggleEstimate = () => {
         socket.emit('showSize', { roomName: roomName, resetEstimation: !isEstimateActive }, (size: any) => {
-            console.log('hello i am here:', size);
+            if (isEstimateActive) {
+                startEstimation();
+                setAttendersEstimation(undefined)
+            }
+
             setAttendersEstimation(size);
             setIsEstimateActive(!isEstimateActive)
         });
@@ -86,22 +96,33 @@ const Room = ({ room }: RoomProps) => {
         return attender?.isAdmin
     }
 
+    const startEstimation = () => {
+        socket.emit('changeRoomStatus', { roomName: roomData.roomName }, (roomInfo: RoomType) => {
+            setRoomData(roomInfo);
+        })
+    }
 
-    return <div className="lex min-h-screen flex-col  p-24">
-        <div> Welcome to room page:{router.query.roomName}</div >
-        <PlayerList rooms={roomData} />
-        <Options cardDeck="Scrum Scale" selectedItem={(item: string) => {
-            socket.emit('sendSelectedSize', { roomName: roomName, selectedEstimationSize: item, playerName: playerName })
-        }} />
+    const emitSelectedEstimationSize = (size: string) => {
+        socket.emit('sendSelectedSize', { roomName: roomName, selectedEstimationSize: size, playerName: playerName })
+    }
 
+    return <div className="flex items-center">
+        <div className="mx-auto w-full max-w-7xl py-10">
+            <div className="grid md:grid-cols-2 grid-cols-1">
+                <AttenderList rooms={roomData} />
+                <div className='grid items-center'>
+                    {!roomData.roomStatus && <CopyRoomLink />}
+                    {!roomData.roomStatus && <StartEstimation onClick={startEstimation} />}
+                    {(roomData.roomStatus && !attendersEstimation) && <Options cardDeck="Scrum Scale" selectedItem={emitSelectedEstimationSize} />}
+                    {(attendersEstimation && roomData.roomStatus) && <EstimateResult roomEstimations={attendersEstimation} />}
+                    {(isAdmin() && roomData.roomStatus) && <button onClick={toggleEstimate} className="bg-blue-500 hover:bg-blue-700 text-white mt-5 font-bold py-2 px-4 rounded">
+                        {!isEstimateActive ? `Show Result` : 'Reval Estimation'}
+                    </button>}
+                </div>
+            </div>
 
-        {isAdmin() && <button onClick={toggleEstimate} className="bg-blue-500 hover:bg-blue-700 text-white mt-5 font-bold py-2 px-4 rounded">
-            {!isEstimateActive ? `Show Result` : 'Restart'}
-        </button>
-        }
-        <div style={{ width: 550, height: 550 }}>
-            {attendersEstimation && <EstimateResult roomEstimations={attendersEstimation} />}
         </div>
+
 
     </div>
 }
