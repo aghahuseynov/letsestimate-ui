@@ -11,7 +11,7 @@ type AppContextType = {
 const AppContext = createContext<AppContextType>({
     playerName: "",
     setPlayerName: () => { },
-    rooms: { attenders: [], roomName: '' },
+    rooms: { attenders: [], roomName: '', roomStatus: false },
     setRooms: () => { }
 });
 
@@ -21,7 +21,7 @@ interface AppProviderProps {
 
 export const AppProvider = ({ children }: AppProviderProps) => {
     const [playerName, setPlayerName] = useState<string>("");
-    const [rooms, setRooms] = useState<RoomType>({ attenders: [], roomName: '' });
+    const [rooms, setRooms] = useState<RoomType>({ attenders: [], roomName: '', roomStatus: false });
 
     return (
         <AppContext.Provider value={{ playerName, setPlayerName, rooms, setRooms }}>
