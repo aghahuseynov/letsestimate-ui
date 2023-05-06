@@ -97,8 +97,9 @@ const Room = ({ room }: RoomProps) => {
     }
 
     const startEstimation = () => {
-        socket.emit('changeRoomStatus', { roomName: roomData.roomName }, (roomInfo: RoomType) => {
-            setRoomData(roomInfo);
+        socket.emit('changeRoomStatus', { roomName: roomData.roomName }, (roomInfo: { room: RoomType, roomEstimations: any }) => {
+            setRoomData(roomInfo.room);
+            setAttendersEstimation(roomInfo.roomEstimations);
         })
     }
 
@@ -112,10 +113,10 @@ const Room = ({ room }: RoomProps) => {
                 <AttenderList rooms={roomData} />
                 <div className='grid items-center'>
                     {!roomData.roomStatus && <CopyRoomLink />}
-                    {!roomData.roomStatus && <StartEstimation onClick={startEstimation} />}
+                    {(!roomData.roomStatus && isAdmin()) && <StartEstimation onClick={startEstimation} />}
                     {(roomData.roomStatus && !attendersEstimation) && <Options cardDeck="Scrum Scale" selectedItem={emitSelectedEstimationSize} />}
-                    {(attendersEstimation && roomData.roomStatus) && <EstimateResult roomEstimations={attendersEstimation} />}
-                    {(isAdmin() && roomData.roomStatus) && <button onClick={toggleEstimate} className="bg-blue-500 hover:bg-blue-700 text-white mt-5 font-bold py-2 px-4 rounded">
+                    {(attendersEstimation?.attenders.length === attendersEstimation?.attenders.length && roomData.roomStatus) && <EstimateResult roomEstimations={attendersEstimation} />}
+                    {(isAdmin() && roomData.roomStatus) && <button onClick={toggleEstimate} className="btn btn-secondary text-white mt-5 font-bold py-2 px-4 rounded">
                         {!isEstimateActive ? `Show Result` : 'Reval Estimation'}
                     </button>}
                 </div>

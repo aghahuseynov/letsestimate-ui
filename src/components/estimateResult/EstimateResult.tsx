@@ -39,7 +39,7 @@ export const EstimateResult = ({ roomEstimations }: EstimateResultProps) => {
         }, {});
 
 
-        const charData = Object.keys(estimationCounts).map((key: any) => {
+        return Object.keys(estimationCounts).map((key: any) => {
             return {
                 title: key,
                 value: Number(estimationCounts[key]),
@@ -47,9 +47,6 @@ export const EstimateResult = ({ roomEstimations }: EstimateResultProps) => {
             };
         });
 
-        console.log(charData);
-
-        return charData;
     }
 
 
