@@ -1,3 +1,4 @@
+import { RoomEstimation } from "@/common/types";
 import { useState } from "react";
 
 
@@ -7,13 +8,23 @@ export const cardDeckItems = ['0', '1/2', '1', '2', '3', '5', '8', '13', '20', '
 type CardDeck = 'Scrum Scale' | 'Fibonacci' | 'Power of two' | 'T-Shirt sizes';
 
 
-export type OptionsType = {
-    cardDeck: CardDeck
-    selectedItem: (item: string) => void
+export type OptionsProps = {
+    cardDeck: CardDeck;
+    selectedItem: (item: string) => void;
+    roomStatus: boolean;
+    roomEstimation?: RoomEstimation
 }
 
-export const Options = ({ cardDeck, selectedItem }: OptionsType) => {
+export const Options = ({ cardDeck, selectedItem, roomStatus, roomEstimation }: OptionsProps) => {
     const [cardItem, setCardItem] = useState<string>();
+
+    if (!roomStatus) {
+        return <></>
+    }
+
+    if (roomEstimation) {
+        return <></>
+    }
 
     const selectItem = (item: string) => {
         setCardItem(item);
@@ -26,6 +37,5 @@ export const Options = ({ cardDeck, selectedItem }: OptionsType) => {
                 selectItem(item);
             }} key={item}>{item}</button>)}
     </div>
-
 
 }

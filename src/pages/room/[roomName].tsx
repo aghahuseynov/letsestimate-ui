@@ -111,19 +111,17 @@ const Room = ({ room }: RoomProps) => {
             <div className="grid md:grid-cols-2 grid-cols-1">
                 <AttenderList rooms={roomData} />
                 <div className='grid items-center'>
-                    {!roomData.roomStatus && <CopyRoomLink />}
-                    {(!roomData.roomStatus && isAdmin()) && <StartEstimation onClick={startEstimation} />}
-                    {(roomData.roomStatus && !attendersEstimation) && <Options cardDeck="Scrum Scale" selectedItem={emitSelectedEstimationSize} />}
-                    {(attendersEstimation?.attenders.length === attendersEstimation?.attenders.length && roomData.roomStatus) && <EstimateResult roomEstimations={attendersEstimation} />}
+                    <CopyRoomLink roomStatus={roomData.roomStatus} />
+                    <StartEstimation roomStatus={roomData.roomStatus} isAdmin={isAdmin()} onClick={startEstimation} />
+                    <Options roomStatus={roomData.roomStatus} roomEstimation={attendersEstimation} cardDeck="Scrum Scale" selectedItem={emitSelectedEstimationSize} />
+                    <EstimateResult roomEstimations={attendersEstimation} />
+
                     {(isAdmin() && roomData.roomStatus) && <button onClick={toggleEstimate} className="btn btn-secondary text-white mt-5 font-bold py-2 px-4 rounded">
                         {!isEstimateActive ? `Show Result` : 'Reval Estimation'}
                     </button>}
                 </div>
             </div>
-
         </div>
-
-
     </div>
 }
 

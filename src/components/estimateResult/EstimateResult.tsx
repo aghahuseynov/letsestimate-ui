@@ -1,31 +1,16 @@
 import { RoomEstimation } from '@/common/types';
+import { getRandomColor } from '@/utils/getRandomColors';
 import { PieChart } from 'react-minimal-pie-chart';
 
-
-
 type EstimateResultProps = {
-    roomEstimations?: RoomEstimation
-}
-
-function getRandomColor(): string {
-    const colors: string[] = [];
-
-    for (let i = 0; i < 20; i++) {
-        const color = "#" + Math.floor(Math.random() * 16777215).toString(16);
-        colors.push(color);
-    }
-
-    const randomIndex = Math.floor(Math.random() * colors.length);
-    return colors[randomIndex];
+    roomEstimations?: RoomEstimation;
 }
 
 export const EstimateResult = ({ roomEstimations }: EstimateResultProps) => {
 
-
     if (!roomEstimations) {
-        return <div></div>
+        return <></>
     }
-
 
     const getEstimationsData = () => {
 
