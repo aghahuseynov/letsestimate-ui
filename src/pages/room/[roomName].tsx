@@ -83,7 +83,6 @@ const Room = ({ room }: RoomProps) => {
         socket.emit('showSize', { roomName: roomName, resetEstimation: !isEstimateActive }, (size: any) => {
             if (isEstimateActive) {
                 startEstimation();
-                setAttendersEstimation(undefined)
             }
 
             setAttendersEstimation(size);
@@ -100,7 +99,7 @@ const Room = ({ room }: RoomProps) => {
         socket.emit('changeRoomStatus', { roomName: roomData.roomName }, (roomInfo: { room: RoomType, roomEstimations: any }) => {
             setRoomData(roomInfo.room);
             setAttendersEstimation(roomInfo.roomEstimations);
-        })
+        });
     }
 
     const emitSelectedEstimationSize = (size: string) => {
