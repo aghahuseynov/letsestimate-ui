@@ -1,5 +1,5 @@
+import { colors } from '@/common/colors';
 import { RoomEstimation } from '@/common/types';
-import { getRandomColor } from '@/utils/getRandomColors';
 import { PieChart } from 'react-minimal-pie-chart';
 
 type EstimateResultProps = {
@@ -24,11 +24,11 @@ export const EstimateResult = ({ roomEstimations }: EstimateResultProps) => {
         }, {});
 
 
-        return Object.keys(estimationCounts).map((key: any) => {
+        return Object.keys(estimationCounts).map((key: any, index) => {
             return {
                 title: key,
                 value: Number(estimationCounts[key]),
-                color: getRandomColor()
+                color: colors[index]
             };
         });
 
