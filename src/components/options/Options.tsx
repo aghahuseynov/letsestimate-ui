@@ -32,7 +32,7 @@ export const Options = ({ cardDeck, selectedItem, roomStatus, roomEstimation }: 
     }
 
     return <div className="grid grid-cols-4 gap-4  mt-5">
-        {cardDeckItems.map(item => <button className={item === cardItem ? 'bg-blue-300' : 'bg-blue-600'}
+        {cardDeckItems.map(item => <button className={`btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg ${item === cardItem && 'bg-blue-300'}`}
             onClick={() => {
                 selectItem(item);
             }} key={item}>{item}</button>)}

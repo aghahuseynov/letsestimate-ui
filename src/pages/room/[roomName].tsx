@@ -116,7 +116,7 @@ const Room = ({ room }: RoomProps) => {
                     <Options roomStatus={roomData.roomStatus} roomEstimation={attendersEstimation} cardDeck="Scrum Scale" selectedItem={emitSelectedEstimationSize} />
                     <EstimateResult roomEstimations={attendersEstimation} />
 
-                    {(isAdmin() && roomData.roomStatus) && <button onClick={toggleEstimate} className="btn btn-secondary text-white mt-5 font-bold py-2 px-4 rounded">
+                    {(isAdmin() && roomData.roomStatus) && <button onClick={toggleEstimate} className="btn  text-white mt-5 font-bold py-2 px-4 rounded">
                         {!isEstimateActive ? `Show Result` : 'Reval Estimation'}
                     </button>}
                 </div>
