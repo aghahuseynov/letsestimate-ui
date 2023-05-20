@@ -1,14 +1,16 @@
+import { RoomStatusType } from "@/common/types"
+
 type CopyRoomLinkProps = {
-    roomStatus: boolean
+    roomStatus: RoomStatusType
 }
 
 export const CopyRoomLink = ({ roomStatus }: CopyRoomLinkProps) => {
 
-    if (roomStatus) {
+    if (roomStatus !== 'start') {
         return <></>
     }
 
-    const copyToClipboard = () => { 
+    const copyToClipboard = () => {
         navigator.clipboard.writeText(window.location.href);
     }
 

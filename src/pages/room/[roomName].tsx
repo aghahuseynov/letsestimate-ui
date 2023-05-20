@@ -27,7 +27,6 @@ const Room = ({ room }: RoomProps) => {
     const socket = useSocket();
 
     const [roomData, setRoomData] = useState<RoomType>(room);
-    const [isEstimateActive, setIsEstimateActive] = useState<boolean>(false)
     const [attendersEstimation, setAttendersEstimation] = useState<RoomEstimation>();
 
     const roomName = router.query.roomName as string
@@ -75,18 +74,25 @@ const Room = ({ room }: RoomProps) => {
             setRoomData(roomInfo);
         })
 
+        socket.on('sendSelectedSize', (data) => {
+            setAttendersEstimation(data);
+        })
+
 
     }, [playerName, router.query.roomName])
 
+    useEffect(() => {
+        if (roomData.roomStatus === 'start' && attendersEstimation) {
+            setAttendersEstimation(undefined);
+        }
+    }, [roomData])
+
+
 
     const toggleEstimate = () => {
-        socket.emit('showSize', { roomName: roomName, resetEstimation: !isEstimateActive }, (size: any) => {
-            if (isEstimateActive) {
-                startEstimation();
-            }
-
+        socket.emit('showSize', { roomName: roomName }, async (size: any) => {
+            await changeRoomStatus();
             setAttendersEstimation(size);
-            setIsEstimateActive(!isEstimateActive)
         });
     }
 
@@ -95,11 +101,14 @@ const Room = ({ room }: RoomProps) => {
         return attender?.isAdmin
     }
 
-    const startEstimation = () => {
-        socket.emit('changeRoomStatus', { roomName: roomData.roomName }, (roomInfo: { room: RoomType, roomEstimations: any }) => {
-            setRoomData(roomInfo.room);
-            setAttendersEstimation(roomInfo.roomEstimations);
-        });
+    const changeRoomStatus = () => {
+        return new Promise((resolve) => {
+            socket.emit('changeRoomStatus', { roomName: roomData.roomName }, (roomInfo: { room: RoomType, roomEstimations: any }) => {
+                setRoomData(roomInfo.room);
+                setAttendersEstimation(roomInfo.roomEstimations);
+                resolve(true);
+            });
+        })
     }
 
     const emitSelectedEstimationSize = (size: string) => {
@@ -109,15 +118,15 @@ const Room = ({ room }: RoomProps) => {
     return <div className="flex items-center">
         <div className="mx-auto w-full max-w-7xl py-10">
             <div className="grid md:grid-cols-2 grid-cols-1">
-                <AttenderList rooms={roomData} />
+                <AttenderList currentPlayerName={playerName} roomEstimation={attendersEstimation} rooms={roomData} />
                 <div className='grid items-center'>
                     <CopyRoomLink roomStatus={roomData.roomStatus} />
-                    <StartEstimation roomStatus={roomData.roomStatus} isAdmin={isAdmin()} onClick={startEstimation} />
+                    <StartEstimation roomStatus={roomData.roomStatus} isAdmin={isAdmin()} onClick={changeRoomStatus} />
                     <Options roomStatus={roomData.roomStatus} roomEstimation={attendersEstimation} cardDeck="Scrum Scale" selectedItem={emitSelectedEstimationSize} />
-                    <EstimateResult roomEstimations={attendersEstimation} />
+                    <EstimateResult roomStatus={roomData.roomStatus} roomEstimations={attendersEstimation} />
 
-                    {(isAdmin() && roomData.roomStatus) && <button onClick={toggleEstimate} className="btn  text-white mt-5 font-bold py-2 px-4 rounded">
-                        {!isEstimateActive ? `Show Result` : 'Reval Estimation'}
+                    {(isAdmin() && roomData.roomStatus !== 'start') && <button onClick={toggleEstimate} className="btn  text-white mt-5 font-bold py-2 px-4 rounded">
+                        {roomData.roomStatus === 'inprogress' ? `Show Result` : 'Restart Estimation'}
                     </button>}
                 </div>
             </div>

@@ -1,12 +1,18 @@
 import { colors } from '@/common/colors';
-import { RoomEstimation } from '@/common/types';
+import { RoomEstimation, RoomStatusType } from '@/common/types';
 import { PieChart } from 'react-minimal-pie-chart';
 
 type EstimateResultProps = {
     roomEstimations?: RoomEstimation;
+    roomStatus: RoomStatusType
+
 }
 
-export const EstimateResult = ({ roomEstimations }: EstimateResultProps) => {
+export const EstimateResult = ({ roomEstimations, roomStatus }: EstimateResultProps) => {
+
+    if (roomStatus !== 'end') {
+        return <></>
+    }
 
     if (!roomEstimations) {
         return <></>

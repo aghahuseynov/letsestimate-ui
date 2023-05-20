@@ -1,4 +1,4 @@
-import { RoomEstimation } from "@/common/types";
+import { RoomEstimation, RoomStatusType } from "@/common/types";
 import { useState } from "react";
 
 
@@ -11,20 +11,22 @@ type CardDeck = 'Scrum Scale' | 'Fibonacci' | 'Power of two' | 'T-Shirt sizes';
 export type OptionsProps = {
     cardDeck: CardDeck;
     selectedItem: (item: string) => void;
-    roomStatus: boolean;
+    roomStatus: RoomStatusType
     roomEstimation?: RoomEstimation
 }
 
 export const Options = ({ cardDeck, selectedItem, roomStatus, roomEstimation }: OptionsProps) => {
     const [cardItem, setCardItem] = useState<string>();
 
-    if (!roomStatus) {
+
+    if (roomStatus === 'start' && cardItem) {
+        setCardItem(undefined);
+    }
+
+    if (roomStatus !== 'inprogress') {
         return <></>
     }
 
-    if (roomEstimation) {
-        return <></>
-    }
 
     const selectItem = (item: string) => {
         setCardItem(item);

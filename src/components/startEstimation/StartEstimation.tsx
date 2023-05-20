@@ -1,8 +1,8 @@
-
+import { RoomStatusType } from "@/common/types";
 
 type StartEstimationProps = {
     onClick: () => void;
-    roomStatus: boolean;
+    roomStatus: RoomStatusType
     isAdmin?: boolean
 }
 
@@ -12,7 +12,7 @@ export const StartEstimation = ({ onClick, roomStatus, isAdmin }: StartEstimatio
         return <></>
     }
 
-    if (roomStatus) {
+    if (roomStatus !== 'start') {
         return <></>
     }
 
