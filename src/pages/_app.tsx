@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
+import { Theme } from '@/components/theme/Theme'
 import { AppProvider } from '@/context/appContext'
 import { SocketProvider } from '@/context/socketContext'
 import '@/styles/globals.css'
@@ -36,6 +37,7 @@ export default function App({ Component, pageProps }: AppProps) {
           </a>
         </div>
         <div className="navbar-end">
+          <Theme />
           <a href="https://www.buymeacoffee.com/aghahuseynov">
             <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=aghahuseynov&button_colour=BD5FFF&font_colour=ffffff&font_family=Poppins&outline_colour=000000&coffee_colour=FFDD00" />
           </a>
