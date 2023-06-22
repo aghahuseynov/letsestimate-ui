@@ -6,7 +6,9 @@
 Install all packages
 ```bash
 npm install
+# or
 yarn install 
+# or
 pnp install
 ```
 
