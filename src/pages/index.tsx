@@ -5,6 +5,7 @@ import { generateRandomRoom } from '@/utils/generateRandomRoom';
 import { useRouter } from 'next/router';
 import { useSocket } from '@/context/socketContext';
 import { useAppContext } from '@/context/appContext';
+import { DonationInfoModal } from '@/components/donationInfoModal/DontationInfoModal';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,18 +37,21 @@ export default function Home() {
 
 
   return (
-    <div className="md:container md:mx-auto hero">
-      <div className="hero-content text-center mt-10">
-        <div className="max-w-md">
-          <h1 className="text-3xl font-bold">Create a room without any limitations!</h1>
-          <p className="py-6">And you can start estimating with your team right away</p>
+    <>
+      <DonationInfoModal />
+      <div className="md:container md:mx-auto hero">
+        <div className="hero-content text-center mt-10">
+          <div className="max-w-md">
+            <h1 className="text-3xl font-bold">Create a room without any limitations!</h1>
+            <p className="py-6">And you can start estimating with your team right away</p>
 
-          <input type="text" placeholder="Please enter your name" className={`input w-full max-w-xs  ${showInputError && 'input-error'} `} onChange={onChange} />
+            <input type="text" placeholder="Please enter your name" className={`input w-full max-w-xs  ${showInputError && 'input-error'} `} onChange={onChange} />
 
-          <button onClick={createRoom} className="btn mt-5 ">Create a Room</button>
+            <button onClick={createRoom} className="btn mt-5 ">Create a Room</button>
 
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
