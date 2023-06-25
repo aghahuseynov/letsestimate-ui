@@ -17,7 +17,7 @@ export const DonationInfoModal = () => {
                 Please feel free to click the `Buy me a coffee` button to make a donation. Your support is greatly appreciated!
                 <br />
                 <br />
-                <a href="https://www.buymeacoffee.com/aghahuseynov" target="_blank">
+                <a href="https://www.buymeacoffee.com/aghahuseynov" target="_blank" rel="noreferrer">
                     <img style={{
                         height: '55px',
                         width: '200px'
