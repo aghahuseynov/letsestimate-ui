@@ -1,5 +1,5 @@
 import { getTheme, setTheme } from "@/utils/theme";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 
 
 export type ThemeType = 'dark' | 'light';
@@ -8,11 +8,11 @@ export const Theme = () => {
 
     const [themeIcon, setThemeIcon] = useState(getTheme());
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         let theme = getTheme();
 
         document?.querySelector('html')?.setAttribute('data-theme', theme);
-    }, [])
+    }, []);
 
     const toggleTheme = () => {
         let theme = getTheme();
