@@ -21,7 +21,9 @@ export default function Home() {
     setPlayerName(event.target.value)
   }
 
-  const createRoom = () => {
+  const createRoom = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
     const randomRoomName = generateRandomRoom();
 
     if (!playerName) {
@@ -45,9 +47,12 @@ export default function Home() {
             <h1 className="text-3xl font-bold">Create a room without any limitations!</h1>
             <p className="py-6">And you can start estimating with your team right away</p>
 
-            <input type="text" placeholder="Please enter your name" className={`input w-full max-w-xs  ${showInputError && 'input-error'} `} onChange={onChange} />
+            <form onSubmit={createRoom}>
+              <input type="text" placeholder="Please enter your name" className={`input w-full max-w-xs  ${showInputError && 'input-error'} `} onChange={onChange} />
 
-            <button onClick={createRoom} className="btn mt-5 ">Create a Room</button>
+              <button type='submit' className="btn mt-5 ">Create a Room</button>
+
+            </form>
 
           </div>
         </div>
