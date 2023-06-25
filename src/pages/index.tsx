@@ -1,13 +1,10 @@
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import { ChangeEvent, useState } from 'react';
 import { generateRandomRoom } from '@/utils/generateRandomRoom';
 import { useRouter } from 'next/router';
 import { useSocket } from '@/context/socketContext';
 import { useAppContext } from '@/context/appContext';
 import { DonationInfoModal } from '@/components/donationInfoModal/DontationInfoModal';
-
-const inter = Inter({ subsets: ['latin'] })
 
 
 export default function Home() {
@@ -23,7 +20,7 @@ export default function Home() {
 
   const createRoom = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     const randomRoomName = generateRandomRoom();
 
     if (!playerName) {
