@@ -9,10 +9,22 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { CopyRoomLink } from "@/components/copyRoomLink/CopyRoomLink";
 import { StartEstimation } from "@/components/startEstimation/StartEstimation";
-import useRoomInfo from "@/hooks/useRoomInfo";
+import { GetServerSideProps } from "next";
 
-const Room = () => {
-    const room = useRoomInfo()
+export const getServerSideProps: GetServerSideProps<{
+    room: RoomType
+}> = async ({ params }) => {
+    const res = await fetch(`${getServerURI()}/room/${params?.roomName}`);
+    const roomData = await res.json()
+
+    return { props: { room: roomData } }
+}
+
+type RoomProps = {
+    room: RoomType;
+};
+
+const Room = ({ room }: RoomProps) => {
     const router = useRouter();
     const socket = useSocket();
 
@@ -24,66 +36,56 @@ const Room = () => {
     const { playerName, setPlayerName } = useAppContext();
 
     useEffect(() => {
-        setRoomData(room);
-    }, [room])
+        const roomInfoRaw = localStorage.getItem(roomName)
 
+        if (!playerName && roomInfoRaw) {
+            const roomInfo = JSON.parse(roomInfoRaw) as unknown as Attender;
+            setPlayerName(roomInfo.playerName);
+            socket.emit('joinRoom', { roomName: roomName, playerName: playerName, isAdmin: roomInfo.isAdmin });
+            setRoomData({ ...roomData, attenders: [...roomData.attenders, { playerName: roomInfo.playerName, isAdmin: roomInfo.isAdmin }] })
 
-    useEffect(() => {
-        if (room && roomData) {
-            const roomInfoRaw = localStorage.getItem(roomName)
+        }
+        else if (!playerName && !roomInfoRaw) {
+            const newPlayerName = prompt('Please enter your name');
+            setPlayerName(newPlayerName!);
 
-            if (!playerName && roomInfoRaw) {
-                const roomInfo = JSON.parse(roomInfoRaw) as unknown as Attender;
-                setPlayerName(roomInfo.playerName);
-                socket.emit('joinRoom', { roomName: router.query.roomName, playerName: playerName, isAdmin: roomInfo.isAdmin });
-                setRoomData({ ...roomData, attenders: [...roomData.attenders, { playerName: roomInfo.playerName, isAdmin: roomInfo.isAdmin }] })
+            setRoomData({ ...roomData, attenders: [...roomData.attenders, { playerName: newPlayerName!, isAdmin: false }] })
 
-            }
-            else if (!playerName && !roomInfoRaw) {
-                const newPlayerName = prompt('Please enter your name');
-                setPlayerName(newPlayerName!);
+            localStorage.setItem(roomName, JSON.stringify({ roomName: roomName, playerName: newPlayerName, isAdmin: false }));
 
-                setRoomData({ ...roomData, attenders: [...roomData.attenders, { playerName: newPlayerName!, isAdmin: false }] })
+            socket.emit('joinRoom', { roomName: roomName, playerName: newPlayerName });
 
-                localStorage.setItem(roomName, JSON.stringify({ roomName: roomName, playerName: newPlayerName, isAdmin: false }));
+        } else {
+            const roomInfo = JSON.parse(roomInfoRaw!) as unknown as Attender;
 
-                socket.emit('joinRoom', { roomName: router.query.roomName, playerName: newPlayerName });
-
-            } else {
-                const roomInfo = JSON.parse(roomInfoRaw!) as unknown as Attender;
-
-                socket.emit('joinRoom', { roomName: router.query.roomName, playerName: playerName, isAdmin: roomInfo.isAdmin });
-            }
-
-            socket.on('newAttenders', (roomInfo: RoomType) => {
-                setRoomData(roomInfo);
-            })
-
-
-            socket.on('showSize', (data) => {
-                setAttendersEstimation(data);
-            })
-
-
-            socket.on('changeRoomStatus', (roomInfo: RoomType) => {
-                setRoomData(roomInfo);
-            })
-
-            socket.on('sendSelectedSize', (data) => {
-                setAttendersEstimation(data);
-            })
+            socket.emit('joinRoom', { roomName: roomName, playerName: playerName, isAdmin: roomInfo.isAdmin });
         }
 
+        socket.on('newAttenders', (roomInfo: RoomType) => {
+            setRoomData(roomInfo);
+        })
 
-    }, [playerName, router.query.roomName, roomData, room])
+
+        socket.on('showSize', (data) => {
+            setAttendersEstimation(data);
+        })
+
+
+        socket.on('changeRoomStatus', (roomInfo: RoomType) => {
+            setRoomData(roomInfo);
+        })
+
+        socket.on('sendSelectedSize', (data) => {
+            setAttendersEstimation(data);
+        })
+
+    }, [playerName, roomName, roomData, room])
 
     useEffect(() => {
-        if (roomData && roomData.roomStatus === 'start' && attendersEstimation) {
+        if (roomData.roomStatus === 'start' && attendersEstimation) {
             setAttendersEstimation(undefined);
         }
     }, [roomData])
-
-
 
     const toggleEstimate = () => {
         socket.emit('showSize', { roomName: roomName }, async (size: any) => {
@@ -109,10 +111,6 @@ const Room = () => {
 
     const emitSelectedEstimationSize = (size: string) => {
         socket.emit('sendSelectedSize', { roomName: roomName, selectedEstimationSize: size, playerName: playerName })
-    }
-
-    if (!roomData) {
-        return <div>Loading...</div>
     }
 
     return <div className="flex items-center">
