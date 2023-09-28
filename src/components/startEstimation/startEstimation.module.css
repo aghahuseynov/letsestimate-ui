@@ -1,0 +1,21 @@
+.subtitle {
+  font-size: 1rem;
+  margin-top: 1.2rem;
+  padding: 1rem;
+}
+
+@media only screen and (max-width: 720px) {
+  .subtitle {
+    font-size: 0.8rem;
+    margin: 1rem 0;
+    padding: 0.5rem;
+   
+  }
+}
+
+@media only screen and (min-width: 1801px) {
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+}
