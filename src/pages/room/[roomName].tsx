@@ -10,6 +10,8 @@ import { useEffect, useState } from "react"
 import { CopyRoomLink } from "@/components/copyRoomLink/CopyRoomLink";
 import { StartEstimation } from "@/components/startEstimation/StartEstimation";
 import { GetServerSideProps } from "next";
+import roomStyles from "./room.module.css";
+
 
 export const getServerSideProps: GetServerSideProps<{
     room: RoomType
@@ -79,7 +81,7 @@ const Room = ({ room }: RoomProps) => {
             setAttendersEstimation(data);
         })
 
-    }, [playerName, roomName, roomData, room])
+    }, [playerName, roomName, room])
 
     useEffect(() => {
         if (roomData.roomStatus === 'start' && attendersEstimation) {
@@ -113,23 +115,20 @@ const Room = ({ room }: RoomProps) => {
         socket.emit('sendSelectedSize', { roomName: roomName, selectedEstimationSize: size, playerName: playerName })
     }
 
-    return <div className="flex items-center">
-        <div className="mx-auto w-full max-w-7xl py-10">
-            <div className="grid md:grid-cols-2 grid-cols-1">
+    return <div className="room">
+            <div className={roomStyles.roomDirection}>
                 <AttenderList currentPlayerName={playerName} roomEstimation={attendersEstimation} rooms={roomData} />
-                <div className='grid items-center'>
+                <div className={roomStyles.invitedRoom}>
                     <CopyRoomLink roomStatus={roomData.roomStatus} />
                     <StartEstimation roomStatus={roomData.roomStatus} isAdmin={isAdmin()} onClick={changeRoomStatus} />
                     <Options roomStatus={roomData.roomStatus} roomEstimation={attendersEstimation} cardDeck="Scrum Scale" selectedItem={emitSelectedEstimationSize} />
                     <EstimateResult roomStatus={roomData.roomStatus} roomEstimations={attendersEstimation} />
-
-                    {(isAdmin() && roomData.roomStatus !== 'start') && <button onClick={toggleEstimate} className="btn  text-white mt-5 font-bold py-2 px-4 rounded">
+                    {(isAdmin() && roomData.roomStatus !== 'start') && <button className="btn" onClick={toggleEstimate} >
                         {roomData.roomStatus === 'inprogress' ? `Show Result` : 'Restart Estimation'}
                     </button>}
                 </div>
             </div>
         </div>
-    </div>
 }
 
 
