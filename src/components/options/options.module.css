@@ -1,0 +1,94 @@
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.8rem;
+  width: 55vw;
+  margin-bottom: 1.2rem;
+}
+
+.option {
+  width: 7.5rem;
+  height: 7.5rem;
+  margin: 1.3rem;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.8rem;
+  background-color: var(--darkOptionButton);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 8px;
+  cursor: pointer;
+  color: var(--darkText-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+.optionFocus {
+  width: 7.5rem;
+  height: 7.5rem;
+  margin: 1.3rem;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  background-color: var(--darkOptionButton);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 8px;
+  cursor: pointer;
+  color: var(--darkText-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  border: 1px solid var(--darkPrimary);
+  transform: scale(1.1);
+}
+.option:hover {
+  border: 1px solid var(--darkSecondary);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transform: scale(1.1);
+}
+
+.button {
+  display: inline-block;
+  padding: 3.5rem 1.5rem;
+  font-size: 1rem;
+  text-align: center;
+  background-color: var(--darkOptionButton);
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background-color: #444;
+}
+
+@media only screen and (max-width: 720px) {
+  .options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .option {
+    width: 4rem;
+    height: 4rem;
+    margin: 0.5rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 1801px) {
+  .option {
+    width: 10rem;
+    height: 10rem;
+  }
+  .options {
+    width: 35vw;
+    margin-bottom: 10rem;
+    margin-left: 10rem;
+  }
+}
