@@ -1,3 +1,88 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  --avatar-size: 2.4rem;
+  font-size: 16px;
+
+  /* color*/
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #20252e;
+  --darkNavbar: #15181e;
+  --darkAttender: #20252e;
+
+  --darkText-color: #fff;
+  --darkButtonBg: #15181e;
+  --darkButtonBgHover: #0a0c0f;
+  --darkOptionButton: #333;
+  --darkAvatar: #ccc;
+
+  --darkPrimary: #48c78e;
+  --darkSecondary: #747bff;
+}
+
+a {
+  color: var(--darkText-color);
+  text-decoration: none;
+}
+
+.btn-blank {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 0.6em 0.8rem;
+  border: none;
+  font-weight: 500;
+  background-color: transparent;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.btn {
+  padding: 0.8rem;
+  background: var(--darkButtonBg);
+  border-radius: 10px;
+  border: none;
+  font-size: 1.2rem;
+  width: 20rem;
+  cursor: pointer;
+  text-align: center;
+  margin: 1.8rem 15rem;
+}
+
+.btn:hover {
+  background: var(--darkButtonBgHover);
+  transform: scale(1.05);
+}
+
+@media only screen and (max-width: 720px) {
+  .btn {
+    padding: 0.6rem;
+    font-size: 1rem;
+    width: 10rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 1801px) {
+  .btn {
+    font-size: 1.2rem;
+  }
+}
