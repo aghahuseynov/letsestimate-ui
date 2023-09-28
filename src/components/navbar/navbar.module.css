@@ -1,0 +1,105 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3rem;
+}
+
+.navbarMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 99vh;
+  width: 5vw;
+  background-color: var(--darkNavbar);
+  padding-top: 3rem;
+  border-radius: 30px;
+}
+
+.navbarLogo {
+  text-align: center;
+  margin-bottom: 3rem;
+  cursor: pointer;
+}
+
+.navbarLink {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbarEnd {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.navbarButton {
+  display: none;
+}
+
+.navbarLinkTitle {
+  margin: 0;
+}
+
+@media only screen and (max-width: 720px) {
+  .navbar {
+    border-radius: 10px;
+    font-size: 1rem;
+    width: 0;
+    position: fixed !important;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding: 0.1rem 1.8rem;
+  }
+
+  .navbarMain {
+    width: 15vw;
+    height: 100vh;
+    position: relative;
+  }
+
+  .navbarLogo {
+    transform: rotate(-90deg);
+  }
+
+  .navbarButton {
+    display: block;
+    background: none;
+    border: none;
+    height: 100vh;
+    font-size: 1.5rem;
+    cursor: pointer;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    position: fixed !important;
+  }
+
+  .navbarButton:focus {
+    color: var(--darkSecondary);
+  }
+
+  .navbarLinkTitle {
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (min-width: 1801px) {
+  .navbarMain {
+    width: 4vw;
+  }
+
+  .navbarLogo {
+    font-size: 1.2rem;
+  }
+
+  .navbarLinkTitle {
+    font-size: 1rem;
+  }
+}
