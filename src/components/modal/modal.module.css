@@ -1,0 +1,64 @@
+.modalOverlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all ease-in 3s;
+}
+
+.modalBox {
+  z-index: 9999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #222730;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 30%;
+  height: 50%;
+  padding: 1rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalFooter {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: block;
+  margin: 1.3rem;
+}
+
+.modalButton {
+  margin-top: 1.3rem;
+}
+.modalBox h1 {
+  margin-bottom: 1.3rem;
+}
+#button{
+  background-color: var(--darkButtonBg) ;
+}
+
+@media only screen and (max-width: 720px) {
+  .modalBox {
+    width: 60%;
+    height: 40%;
+    padding: 1rem;
+    border-radius: 30px;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -55%);
+  }
+  .modalFooter{
+    margin: 0 0.6rem;
+  }
+  .modalBox h1 {
+    font-size: 1rem;
+  }
+  .modalBox p {
+    font-size: 0.8rem;
+  }
+}
