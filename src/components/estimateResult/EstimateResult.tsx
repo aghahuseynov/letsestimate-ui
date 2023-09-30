@@ -1,6 +1,8 @@
 import { colors } from '@/common/colors';
 import { RoomEstimation, RoomStatusType } from '@/common/types';
 import { PieChart } from 'react-minimal-pie-chart';
+import EstimateStyle from "./estimateResult.module.css";
+
 
 type EstimateResultProps = {
     roomEstimations?: RoomEstimation;
@@ -41,7 +43,7 @@ export const EstimateResult = ({ roomEstimations, roomStatus }: EstimateResultPr
     }
 
 
-    return <div style={{ width: 550, height: 550 }}>
+    return <div className={EstimateStyle.pieChart} >
         <PieChart
             style={{ fontFamily: "Roboto", fontSize: "10px" }} labelStyle={{ fill: '#fff' }}
             label={({ dataEntry }) => dataEntry.title} startAngle={-90} animate={true}

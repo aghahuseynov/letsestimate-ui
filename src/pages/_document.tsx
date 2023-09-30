@@ -10,7 +10,7 @@ export default function Document() {
         <title>{`Let's Estimate`}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <body className='min-h-screen bg-base-300'>
+      <body >
         <Main />
         <NextScript />
       </body>

@@ -10,7 +10,7 @@ export const DonationInfoModal = () => {
     }
 
     return <dialog id="donation_modal" className={`modal bg-transparent ${donationInfoModal}`}>
-        <form method="dialog" className="modal-box">
+        {/* <form method="dialog" className="modal-box">
             <h3 className="font-bold text-lg">Support</h3>
             <p className="py-4 items-center">
                 Let`s Estimate is an open-source and free application that relies on financial support to remain accessible and ensure timely fixes for new features and bugs. The current monthly expense for maintaining the project is only 5 euros. By donating just 5 euros, you can help sustain the website and support its long-term development.
@@ -29,6 +29,6 @@ export const DonationInfoModal = () => {
             <div className="modal-action">
                 <button onClick={closeModal} className="btn">Close</button>
             </div>
-        </form>
+        </form> */}
     </dialog>
 }

@@ -1,0 +1,27 @@
+.avatar {
+  background-color: var(--darkAvatar);
+  border-radius: 50%;
+  height: var(--avatar-size);
+  text-align: center;
+  width: var(--avatar-size);
+  margin-right: 1.3rem;
+}
+
+.avatarItem {
+  font-size: calc(var(--avatar-size) / 2);
+  line-height: 1;
+  position: relative;
+  top: calc(var(--avatar-size) / 4);
+}
+
+@media only screen and (max-width: 720px) {
+  .avatarItem {
+    top: calc(var(--avatar-size) / 5);
+  }
+}
+
+@media only screen and (min-width: 1801px) {
+  .avatarItem {
+    top: calc(var(--avatar-size) / 8);
+  }
+}

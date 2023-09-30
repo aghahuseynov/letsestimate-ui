@@ -1,0 +1,89 @@
+.createRoom {
+  display: flex;
+  justify-content: center;
+  width: 93vw;
+  margin-top: 30px;
+}
+
+.createRoomDiv {
+  width: 500px;
+}
+
+.createRoomTitle {
+  text-align: center;
+  font-size: 30px;
+  padding: 10px 0;
+}
+
+.createRoomSubtitle {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.createRoomForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.createRoomForm input {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--darkButtonBg);
+  background: var(--darkButtonBg);
+  border-radius: 10px;
+  width: 25rem;
+}
+
+.createRoomForm input:focus {
+  border: 1px solid var(--darkSecondary);
+  outline: none;
+}
+
+
+@media only screen and (max-width: 720px) {
+  .createRoom {
+    width: 100vh;
+    margin-top: 0.7rem;
+  }
+
+  .createRoomTitle {
+    font-size: 1.5rem;
+  }
+
+  .createRoomSubtitle {
+    font-size: 0.8rem;
+  }
+
+  .createRoomForm button {
+    font-size: 1rem;
+  }
+
+  .createRoomDiv {
+    width: 90vw;
+  }
+
+  .createRoomForm input {
+    width: 80vw;
+  }
+
+  .createRoomForm button {
+    width: 50vw;
+  }
+}
+
+@media only screen and (min-width: 1801px) {
+  .createRoomTitle {
+    font-size: 2rem;
+  }
+
+  .createRoomSubtitle {
+    font-size: 1.2rem;
+  }
+
+  .createRoomForm button {
+    font-size: 1.2rem;
+  }
+}

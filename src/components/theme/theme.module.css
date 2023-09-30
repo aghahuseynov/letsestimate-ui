@@ -1,0 +1,9 @@
+.themeIcon {
+  font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .themeIcon {
+    font-size: 1.3rem;
+  }
+}
