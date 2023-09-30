@@ -7,6 +7,7 @@ type AttenderAvatarType = {
   playerName: string;
 };
 
+// eslint-disable-next-line react/display-name
 export const AttenderAvatar = memo(function ({
   playerName,
 }: AttenderAvatarType) {
