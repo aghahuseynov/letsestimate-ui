@@ -25,36 +25,50 @@
 }
 
 .modalFooter {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  display: block;
-  margin: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
 }
 
 .modalButton {
   margin-top: 1.3rem;
 }
-.modalBox h1 {
-  margin-bottom: 1.3rem;
+.modalHeader h2 {
+  padding: 10px;
 }
-#button{
-  background-color: var(--darkButtonBg) ;
+.closeButton {
+  height: 40px;
+  width: 100px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  background: var(--darkButtonBg);
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.closeButton:hover {
+  background: var(--darkButtonBgHover);
+  transform: scale(1.05);
+}
+.buyMeCoffee {
+  padding: 10px;
 }
 
 @media only screen and (max-width: 720px) {
   .modalBox {
-    width: 60%;
-    height: 40%;
+    width: 86%;
+    height: 50%;
     padding: 1rem;
     border-radius: 30px;
     top: 50%;
     left: 55%;
     transform: translate(-50%, -55%);
   }
-  .modalFooter{
-    margin: 0 0.6rem;
+  .modalFooter {
+    margin-top: 0.2rem;
   }
+
   .modalBox h1 {
     font-size: 1rem;
   }
