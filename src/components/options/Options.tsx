@@ -52,6 +52,7 @@ export const Options = ({
       {cardDeckItems.map((item) => (
         <button
           tabIndex={0}
+          id="optionButton"
           className={`${optionStyle.option}  ${
             item === cardItem && optionStyle.optionFocus
           }`}

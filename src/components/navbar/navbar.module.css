@@ -13,7 +13,6 @@
   justify-content: flex-start;
   height: 99vh;
   width: 5vw;
-  background-color: var(--darkNavbar);
   padding-top: 3rem;
   border-radius: 30px;
 }
@@ -28,6 +27,7 @@
   height: 80vh;
   display: flex;
   flex-direction: column;
+  padding: 1.2rem;
 }
 
 .navbarEnd {
@@ -44,7 +44,7 @@
   margin: 0;
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 768px) {
   .navbar {
     border-radius: 10px;
     font-size: 1rem;
@@ -87,6 +87,25 @@
 
   .navbarLinkTitle {
     font-size: 0.8rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .navbarMain {
+    width: 9vw;
+  }
+
+  .navbarLogo {
+    font-size: 1rem;
+  }
+
+  .navbarLinkTitle {
+    font-size: 1rem;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .navbarMain {
+    width: 7vw;
   }
 }
 

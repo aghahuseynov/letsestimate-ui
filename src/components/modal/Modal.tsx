@@ -13,7 +13,11 @@ const Modal = ({ children, isOpen, toggle, title }: ModalType) => {
     <>
       {isOpen && (
         <div className={styles.modalOverlay} onClick={toggle}>
-          <div onClick={(e) => e.stopPropagation()} className={styles.modalBox}>
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className={styles.modalBox}
+            id="modalBox"
+          >
             <div className={styles.modalHeader}>
               <h2>{title}</h2>
             </div>
@@ -37,7 +41,11 @@ const Modal = ({ children, isOpen, toggle, title }: ModalType) => {
                   />
                 </a>
               </div>
-              <button onClick={toggle} className={styles.closeButton}>
+              <button
+                onClick={toggle}
+                className={styles.closeButton}
+                id="closeButton"
+              >
                 Close
               </button>
             </div>
