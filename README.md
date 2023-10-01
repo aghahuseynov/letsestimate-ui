@@ -1,4 +1,4 @@
-# Let's Estimate Service
+# Let's Estimate UI
 ##### "Let's Estimate" is a straightforward and open-source planning estimation application designed to streamline the estimation process during remote planning sessions.
 
 
