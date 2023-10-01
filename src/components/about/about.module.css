@@ -2,6 +2,12 @@
   font-size: 1.5rem;
 }
 
+.subtitle {
+  padding: 3px 10px;
+  font-size: 0.9rem;
+  text-align: justify;
+}
+
 @media only screen and (max-width: 768px) {
   .aboutIcon {
     font-size: 1.3rem;

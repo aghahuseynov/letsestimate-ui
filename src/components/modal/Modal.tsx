@@ -14,10 +14,30 @@ const Modal = ({ children, isOpen, toggle, title }: ModalType) => {
       {isOpen && (
         <div className={styles.modalOverlay} onClick={toggle}>
           <div onClick={(e) => e.stopPropagation()} className={styles.modalBox}>
-            <div className={styles.modalHeader}><h1>{title}</h1></div>
-            <div className={styles.modalBody}><p>{children}</p></div>
+            <div className={styles.modalHeader}>
+              <h2>{title}</h2>
+            </div>
+            <div className={styles.modalBody}>
+              <p>{children}</p>
+            </div>
             <div className={styles.modalFooter}>
-              <button onClick={toggle} id={styles.button} className="btn-blank ">
+              <div className={styles.buyMeCoffee}>
+                <a
+                  href="https://www.buymeacoffee.com/aghahuseynov"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    style={{
+                      height: "40px",
+                      width: "150px",
+                    }}
+                    src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png"
+                    alt="Buy Me A Coffee"
+                  />
+                </a>
+              </div>
+              <button onClick={toggle} className={styles.closeButton}>
                 Close
               </button>
             </div>
