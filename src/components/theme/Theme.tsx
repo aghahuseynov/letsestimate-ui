@@ -1,5 +1,4 @@
-import { getTheme, setTheme } from "@/utils/theme";
-import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
+import React, { useContext } from "react";
 import { BsMoon } from "react-icons/bs";
 import { BsFillSunFill } from "react-icons/bs";
 import ThemeStyles from "./theme.module.css";

@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable @next/next/no-title-in-document-head */
 import { ThemeProvider } from "@/context/themeContext";
-import { getTheme } from "@/utils/theme";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {

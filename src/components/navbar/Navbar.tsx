@@ -6,6 +6,7 @@ import NavbarStyles from "./navbar.module.css";
 import { BsChevronCompactRight } from "react-icons/bs";
 import { BsChevronCompactLeft } from "react-icons/bs";
 import { useState } from "react";
+import Link from "next/link";
 
 export const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -29,7 +30,7 @@ export const Navbar = () => {
         <div className={NavbarStyles.navbar}>
           <div className={NavbarStyles.navbarMain} id="navbarMain">
             <div className={NavbarStyles.navbarLogo}>
-              <a href="/">{`Let's Estimate`}</a>
+              <Link href="/">{`Let's Estimate`}</Link>
             </div>
             <div className={NavbarStyles.navbarLink}>
               <div>
