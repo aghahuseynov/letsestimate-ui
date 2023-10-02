@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 0.8rem;
-  width: 55vw;
+  width: 100%;
   margin-bottom: 1.2rem;
 }
 
@@ -64,7 +64,7 @@
   background-color: #444;
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 768px) {
   .options {
     display: flex;
     flex-wrap: wrap;

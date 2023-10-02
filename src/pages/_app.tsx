@@ -6,16 +6,17 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import "../styles/_app.css";
 import { Navbar } from "@/components/navbar/Navbar";
+import { ThemeProvider } from "@/context/themeContext";
+import { Main } from "@/components/main/Main";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <SocketProvider>
-      <AppProvider>
-        <div className="App">
-          <Navbar />
-          <Component {...pageProps} />
-        </div>
-      </AppProvider>
+      <ThemeProvider>
+        <AppProvider>
+          <Main Component={Component} pageProps={pageProps} />
+        </AppProvider>
+      </ThemeProvider>
     </SocketProvider>
   );
 }

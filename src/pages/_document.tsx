@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable @next/next/no-title-in-document-head */
-import { getTheme } from '@/utils/theme'
-import { Html, Head, Main, NextScript } from 'next/document'
+import { ThemeProvider } from "@/context/themeContext";
+import { getTheme } from "@/utils/theme";
+import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
@@ -10,10 +11,11 @@ export default function Document() {
         <title>{`Let's Estimate`}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <body >
+
+      <body>
         <Main />
         <NextScript />
       </body>
     </Html>
-  )
+  );
 }

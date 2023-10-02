@@ -6,37 +6,112 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
   --avatar-size: 2.4rem;
   font-size: 16px;
-
-  /* color*/
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #20252e;
+
+  /* light color*/
+  --lightBackground-color: #ffff;
+  --lightMain-color: linear-gradient(
+    to left top,
+    #214e90,
+    #3d59a0,
+    #5464af,
+    #6b70be,
+    #827bcd
+  );
+
+  /* dark color*/
+  --darkBackground-color: #20252e;
   --darkNavbar: #15181e;
   --darkAttender: #20252e;
-
   --darkText-color: #fff;
   --darkButtonBg: #15181e;
   --darkButtonBgHover: #0a0c0f;
   --darkOptionButton: #333;
   --darkAvatar: #ccc;
-
   --darkPrimary: #48c78e;
   --darkSecondary: #747bff;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  position: relative;
+}
+
+#__next {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+}
+
+#dark {
+  background-color: var(--darkBackground-color);
+  color: var(--darkText-color);
+}
+#light {
+  background-color: var(--lightBackground-color);
+  color: #214e90;
+}
+
+/*navbar*/
+#dark #navbarMain {
+  background-color: var(--darkNavbar);
+}
+
+#light #navbarMain {
+  background-image: var(--lightMain-color);
+}
+
+/**/
+
+#light input {
+  background-color: white;
+  color: black;
+  border: 1px solid #3d59a0;
+}
+
+#light h1 {
+  background: -webkit-linear-gradient(
+    #214e90,
+    #3d59a0,
+    #5464af,
+    #6b70be,
+    #827bcd
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#light h2 {
+  color: #214e90;
+}
+#light #optionButton {
+  background-color: white;
+  background: -webkit-linear-gradient(
+    #214e90,
+    #3d59a0,
+    #5464af,
+    #6b70be,
+    #827bcd
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#light #attenderList {
+  background-color: white;
+}
 a {
   color: var(--darkText-color);
   text-decoration: none;
 }
-
+span {
+  color: white;
+}
 .btn-blank {
   display: flex;
   flex-direction: column;
@@ -49,7 +124,6 @@ a {
   font-weight: 500;
   background-color: transparent;
   width: 100%;
-  margin-bottom: 1.5rem;
   font-size: 1rem;
 }
 
@@ -62,7 +136,6 @@ a {
   width: 20rem;
   cursor: pointer;
   text-align: center;
-  margin: 1.8rem 15rem;
 }
 
 .btn:hover {
@@ -70,7 +143,47 @@ a {
   transform: scale(1.05);
 }
 
-@media only screen and (max-width: 720px) {
+#light .btn,
+#closeButton {
+  background: #3d59a0;
+}
+
+#light .btn:hover,
+#closeButton:hover {
+  background: #214e90;
+}
+#light li {
+  border: none;
+}
+#light #modalBox {
+  background-color: white;
+}
+
+#allertPassword {
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+  width: 200px;
+  background-color: var(--darkButtonBg);
+  padding: 1rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+#allertPassword.active {
+  right: -400px;
+  transition: 0.3s;
+}
+#light #allertPassword {
+  background-color: white;
+  color: #214e90;
+}
+
+@media only screen and (max-width: 768px) {
   .btn {
     padding: 0.6rem;
     font-size: 1rem;

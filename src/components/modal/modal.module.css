@@ -16,12 +16,10 @@
   transform: translate(-50%, -50%);
   background: #222730;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  width: 30%;
-  height: 50%;
+  width: 400px;
+  height: 350px;
   padding: 1rem;
   border-radius: 30px;
-  display: flex;
-  flex-direction: column;
 }
 
 .modalFooter {
@@ -55,10 +53,10 @@
   padding: 10px;
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 768px) {
   .modalBox {
-    width: 86%;
-    height: 50%;
+    width: 400px;
+    height: 350px;
     padding: 1rem;
     border-radius: 30px;
     top: 50%;
@@ -67,12 +65,5 @@
   }
   .modalFooter {
     margin-top: 0.2rem;
-  }
-
-  .modalBox h1 {
-    font-size: 1rem;
-  }
-  .modalBox p {
-    font-size: 0.8rem;
   }
 }

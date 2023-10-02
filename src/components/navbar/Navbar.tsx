@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { Theme } from "../theme/Theme";
 import About from "../about/About";
 import NavbarStyles from "./navbar.module.css";
+
 import { BsChevronCompactRight } from "react-icons/bs";
 import { BsChevronCompactLeft } from "react-icons/bs";
-
 import { useState } from "react";
 
 export const Navbar = () => {
@@ -27,9 +27,9 @@ export const Navbar = () => {
     <>
       {!isMobile && (
         <div className={NavbarStyles.navbar}>
-          <div className={NavbarStyles.navbarMain}>
+          <div className={NavbarStyles.navbarMain} id="navbarMain">
             <div className={NavbarStyles.navbarLogo}>
-              <a >{`Let's Estimate`}</a>
+              <a href="/">{`Let's Estimate`}</a>
             </div>
             <div className={NavbarStyles.navbarLink}>
               <div>
@@ -75,9 +75,6 @@ export const Navbar = () => {
                   <Theme />
                   <About />
                 </div>
-                {/* <a href="https://www.buymeacoffee.com/aghahuseynov">
-        <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=aghahuseynov&button_colour=BD5FFF&font_colour=ffffff&font_family=Poppins&outline_colour=000000&coffee_colour=FFDD00" />
-      </a> */}
               </div>
             </div>
           </div>

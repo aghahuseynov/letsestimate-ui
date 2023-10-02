@@ -33,7 +33,7 @@ export const AttenderList = ({
   };
 
   return (
-    <div className={attenderListStyle.attenderList}>
+    <div className={attenderListStyle.attenderList} id="attenderList">
       <h2 className={attenderListStyle.title}>Attenders</h2>
       <ul>
         {rooms.attenders.map((item, index: any) => {

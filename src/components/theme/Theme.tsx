@@ -1,35 +1,16 @@
 import { getTheme, setTheme } from "@/utils/theme";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { BsMoon } from "react-icons/bs";
 import { BsFillSunFill } from "react-icons/bs";
 import ThemeStyles from "./theme.module.css";
-
-export type ThemeType = "dark" | "light";
+import { ThemeContext } from "@/context/themeContext";
 
 export const Theme = () => {
-  const [themeIcon, setThemeIcon] = useState(getTheme());
-
-  useEffect(() => {
-    let theme = getTheme();
-
-    document?.querySelector("html")?.setAttribute("data-theme", theme);
-  }, []);
-
-  const toggleTheme = () => {
-    let theme = getTheme();
-
-    theme = theme == "dark" ? "light" : "dark";
-
-    setThemeIcon(theme);
-
-    setTheme(theme as ThemeType);
-
-    document?.querySelector("html")?.setAttribute("data-theme", theme);
-  };
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
     <button onClick={toggleTheme} className="btn-blank ">
-      {themeIcon == "light" ? (
+      {theme == "light" ? (
         <div className={ThemeStyles.themeIcon}>
           <BsMoon />
         </div>

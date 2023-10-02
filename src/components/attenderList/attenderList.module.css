@@ -1,9 +1,8 @@
 .attenderList {
-  width: 30vw;
+  width: 40%;
   background-color: var(--darkAttender);
   border-radius: 1.3rem;
   padding: 1.3rem;
-  margin-top: 2.5rem;
   height: 100%;
 }
 
@@ -27,7 +26,7 @@
 }
 
 .avatar {
-  background-color:var(--darkAvatar);
+  background-color: var(--darkAvatar);
   border-radius: 50%;
   height: var(--avatar-size);
   text-align: center;
@@ -67,20 +66,19 @@
 }
 
 .adminTitle {
-  color:var(--darkPrimary);
+  color: var(--darkPrimary);
   font-size: 0.8rem;
 }
 
-.checkIcon{
-  color:var(--darkPrimary);
-
+.checkIcon {
+  color: var(--darkPrimary);
 }
 
-.closeIcon{
+.closeIcon {
   color: rgb(208, 13, 13);
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 768px) {
   .attenderList {
     width: 100%;
     padding: 0.3rem;
@@ -132,7 +130,7 @@
     font-size: 2rem;
   }
 
-  .status{
+  .status {
     font-size: 1.2rem;
   }
 }

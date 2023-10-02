@@ -1,44 +1,30 @@
+.room {
+  width: 100%;
+}
 .roomDirection {
   display: flex;
-  justify-content: space-evenly;
-}
-.room {
-  width: 100vw !important;
+  justify-content: space-between;
+  height: 100vh;
 }
 
 .invitedRoom {
-  width: 60vw;
-  text-align: center;
-  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  width: 60%;
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 768px) {
   .invitedRoom {
-    width: 100%;
     padding: 0;
-    height: 40vh;
     margin-top: 1rem;
+    width: 100%;
   }
   .roomDirection {
     align-items: center;
     justify-content: center;
     flex-direction: column;
     width: 100%;
-
-  }
-}
-
-@media only screen and (min-width: 1801px) {
-  .invitedRoom {
-    width: 40vw;
-    
-  }
-  .roomDirection {
-    display: flex;
-    justify-content: space-evenly;
-    width: 94vw;
-  }
-  .invitedRoom {
-    width: 50vw;
   }
 }

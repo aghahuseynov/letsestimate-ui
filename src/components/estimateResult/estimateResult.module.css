@@ -1,17 +1,16 @@
 .pieChart {
-  width: 35rem;
-  height: 35rem;
-  margin-left: 8rem;
-  margin-bottom: 1.3rem;
+  width: 40rem;
+  height: 40rem;
+  margin: 1.2rem 0;
+  text-align: center;
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 768px) {
   .pieChart {
     width: 22.5rem;
     height: 17.5rem;
     margin: 0;
     margin-bottom: 1.5rem;
-
   }
 }
 
