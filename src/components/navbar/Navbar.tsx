@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Theme } from "../theme/Theme";
 import About from "../about/About";
 import NavbarStyles from "./navbar.module.css";
-
 import { BsChevronCompactRight } from "react-icons/bs";
 import { BsChevronCompactLeft } from "react-icons/bs";
 import { useState } from "react";
@@ -81,7 +80,11 @@ export const Navbar = () => {
         </div>
       )}
 
-      <button className={NavbarStyles.navbarButton} onClick={handleResize}>
+      <button
+        className={NavbarStyles.navbarButton}
+        onClick={handleResize}
+        id="navbarButton"
+      >
         {!isMobile ? <BsChevronCompactLeft /> : <BsChevronCompactRight />}
       </button>
     </>
