@@ -182,6 +182,9 @@ span {
   background-color: white;
   color: #214e90;
 }
+#logo #navbarButton {
+  color: #0a0c0f;
+}
 
 @media only screen and (max-width: 768px) {
   .btn {
@@ -191,6 +194,9 @@ span {
     margin-bottom: 2rem;
     margin-top: 2rem;
     margin: 0;
+  }
+  #light #navbarButton {
+    color: #0a0c0f;
   }
 }
 
